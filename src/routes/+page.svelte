@@ -4,13 +4,16 @@
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
     export let form
-	//get files name from uploads
+
+	//get files name from DB
 	let files: string | any[] = [];
 	onMount(async () => {
 		const response = await fetch('/api/files');
 		const data = await response.json();
-		if (data.files) {
-			files = data.files;
+		if (data.result) {
+			files = data.result;
+			console.log(files);
+			console.log(data.result);
 		} else {
 			console.error(data.error || 'Failed to fetch files');
 		}
@@ -88,8 +91,8 @@
 	{#if files.length > 0}
 		{#each files as file}
 			<li class="mb-2">
-				<a href={`/uploads/${file}`} download={file} class="text-blue-600 hover:underline">
-					{file}
+				<a href={file.file.path} download={file} class="text-blue-600 hover:underline">
+					{file.file.name}
 				</a>
 			</li>
 		{/each}
