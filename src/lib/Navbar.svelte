@@ -4,7 +4,7 @@
 </script>
 
 <nav class="flex items-center justify-between bg-blue-500 p-4 text-white">
-	<div class='flex  space-x-10'>
+	<div class='flex space-x-10'>
 		<button
 			class="flex h-5 w-7 cursor-pointer flex-col justify-between group me-5"
 			on:click={toggleSidebar}
@@ -22,7 +22,9 @@
 		</button>
 		{#if user}
 			<p>ברוך הבא, {user.username}!</p>
-			<button>LogOut</button>
+			<form method="post" action="/login/?/logout">
+				<button type="submit">LogOut</button>
+			</form>
 		{:else}
 			<a href="/login">Login</a>
 		{/if}

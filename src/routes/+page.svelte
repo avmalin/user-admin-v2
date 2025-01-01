@@ -1,4 +1,4 @@
-<a href="/lucia">lucia</a>
+<a href="/admin">admin</a>
 
 <script lang="ts">
 	import { enhance } from '$app/forms';

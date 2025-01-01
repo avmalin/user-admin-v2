@@ -54,7 +54,7 @@ export const actions: Actions = {
 		const session = await auth.createSession(sessionToken, existingUser.id);
 		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 		console.log('12')
-		return redirect(302, '/lucia');
+		return redirect(302, '/');
 		
 
 	},
@@ -91,7 +91,16 @@ export const actions: Actions = {
 			console.log(e)
 			return fail(500, { message: 'An error has occurred' });
 		}
-		return redirect(302, '/lucia');
+		return redirect(302, '/');
+	},
+	logout: async (event) => {
+		if (!event.locals.session) {
+			return fail(401);
+		}
+		await auth.invalidateSession(event.locals.session.id);
+		auth.deleteSessionTokenCookie(event);
+
+		return redirect(302, '/login');
 	},
 };
 

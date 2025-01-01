@@ -46,3 +46,8 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+# Authortication
+we are using lucia in this project to admin users.
+$lib/server/auth.ts contain all the password and session admin
+/src/hooks.server.ts are test the session and user
