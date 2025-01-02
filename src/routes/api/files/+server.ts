@@ -18,7 +18,8 @@ export async function GET() {
         file:{ id: table.files.id, name: table.files.filename,path: table.files.filepath,uploadedAt: table.files.uploadedAt }
       }).from(table.files)
       .innerJoin(table.users, eq(table.files.userId, table.users.id));
-      console.log(result);
+      
+      
     
     return json({result:result});
   } catch (error) {

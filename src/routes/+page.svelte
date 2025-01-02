@@ -95,7 +95,7 @@
 				<a href={file.file.path} download={file} class="text-blue-600 hover:underline">
 					{file.file.name}
 				</a>
-				<p> בעלים:{file.user.username} | תאריך העלה:{file.file.uploadedAt}</p>
+				<p>בעלים:{file.user.username} | תאריך העלה: {file.file.uploadedAt}</p>
 			</li>
 		{/each}
 	{:else}

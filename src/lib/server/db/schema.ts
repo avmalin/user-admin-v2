@@ -1,12 +1,12 @@
 import { sql, type InferSelectModel } from "drizzle-orm";
-import { sqliteTable, text, integer, SQLiteTimestamp } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, int } from 'drizzle-orm/sqlite-core';
 
 
 export const users = sqliteTable('users', {
     id: text('id').primaryKey(),
     username: text('username').notNull().unique(),
     password: text('password').notNull(),
-    createdAt: integer('created_at',{mode:'timestamp'}).default(sql`CURRENT_TIMESTAMP`).notNull(),
+    createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
 
 export const files = sqliteTable('files', {
@@ -14,7 +14,7 @@ export const files = sqliteTable('files', {
     userId: text('user_id').notNull().references(() => users.id),
     filename: text('filename').notNull(),
     filepath: text('filepath').notNull(),
-    uploadedAt: integer('uploaded_at', { mode: 'timestamp' }).default(sql`CURRENT_TIMESTAMP`).notNull()
+    uploadedAt: text('uploaded_at').default(sql`CURRENT_TIMESTAMP`).notNull()
     
   });
 
@@ -22,8 +22,8 @@ export const files = sqliteTable('files', {
 export const session = sqliteTable("session", {
     id: text('id').primaryKey(),
     userId: text('user_id').notNull().references(() => users.id),
-    expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
-});
+    expiresAt: int('expires_at', { mode: 'timestamp' }).notNull()
+}); 
 
 export type Session = typeof session.$inferSelect;
 export type Files = typeof files.$inferSelect;
