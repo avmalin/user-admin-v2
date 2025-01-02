@@ -49,5 +49,7 @@ You can preview the production build with `npm run preview`.
 
 # Authortication
 we are using lucia in this project to admin users.
-$lib/server/auth.ts contain all the password and session admin
-/src/hooks.server.ts are test the session and user
+> $lib/server/auth.ts contain all the password and session admin
+> /src/hooks.server.ts are test the session and user
+> in /route/login we got action login, signup and logout
+> to prevet gouest to see a page on load function we use redirect to login page if there isn't session

@@ -14,6 +14,7 @@ export const files = sqliteTable('files', {
     userId: text('user_id').notNull().references(() => users.id),
     filename: text('filename').notNull(),
     filepath: text('filepath').notNull(),
+    uploadedAt: integer('uploaded_at', { mode: 'timestamp' }).default(sql`CURRENT_TIMESTAMP`).notNull()
     
   });
 

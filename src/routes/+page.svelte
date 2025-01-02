@@ -4,9 +4,10 @@
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
     export let form
+	let files:any[]=[]
 
 	//get files name from DB
-	let files: string | any[] = [];
+	
 	onMount(async () => {
 		const response = await fetch('/api/files');
 		const data = await response.json();
@@ -88,12 +89,13 @@
 <h1 class="mb-4 text-2xl font-semibold">Available Files</h1>
 
 <ul class="list-disc pl-5">
-	{#if files.length > 0}
+	{#if true}
 		{#each files as file}
 			<li class="mb-2">
 				<a href={file.file.path} download={file} class="text-blue-600 hover:underline">
 					{file.file.name}
 				</a>
+				<p> בעלים:{file.user.username} | תאריך העלה:{file.file.uploadedAt}</p>
 			</li>
 		{/each}
 	{:else}

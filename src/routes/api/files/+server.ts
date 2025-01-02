@@ -12,13 +12,13 @@ export async function GET() {
   try {
     //read all the files name
     const files = await readdir(filesDir);
-    const [result] = await db.select(
+    const result = await db.select(
       {
         user:{ id: table.users.id, username: table.users.username },
-        file:{ id: table.files.id, name: table.files.filename,path: table.files.filepath }
+        file:{ id: table.files.id, name: table.files.filename,path: table.files.filepath,uploadedAt: table.files.uploadedAt }
       }).from(table.files)
-      .innerJoin(table.users, eq(table.files.userId, table.users.id))
-      .where(eq(table.files.userId, table.users.id));
+      .innerJoin(table.users, eq(table.files.userId, table.users.id));
+      console.log(result);
     
     return json({result:result});
   } catch (error) {
